@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Processed Results</title>
+    <style>
+        /* General Layout and Styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header Styling */
+        .header {
+            width: 100%;
+            background-color: #58c3e0;
+            color: #000;
+            padding: 15px;
+            box-shadow: 0px 4px 8px rgba(255, 0, 150, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header img {
+            height: 60px;
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #000;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Content Area Styling */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start; /* Left-align content */
+            padding: 160px 20px 20px 20px; /* Adjust padding for spacing */
+        }
+
+        .welcome-message {
+            text-align: left;
+            font-size: 36px;
+            font-weight: bold;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        .welcome-subtext {
+            text-align: left;
+            margin-left: 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            width: 200px;
+            padding: 15px;
+            margin: 30px;
+            font-size: 16px;
+            color: #000;
+            background-color: #58c3e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #47a8c4;
+        }
+
+        /* Form and Cost Saving Positioning */
+        .form-container, .cost-saving {
+            position: absolute;
+            top: 90px; /* Start just below the header */
+            right: 20px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1001; /* Ensure form stays on top */
+        }
+
+
+
+        .cost-saving {
+            color: green;
+            top: 80px; /* Space the cost-saving section below the form */
+            z-index: 1000; /* Ensure cost-saving is below the form */
+        }
+
+        /* Highlight red class */
+        .highlight-red {
+            color: red;
+            font-weight: bold;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="static/Digi-Home-page-Logo.png" alt="Logo">
+    </div>
+
+    <div class="content">
+        <h1 class="welcome-message" style="text-align: left; margin-left: 0;">Electricity Bill Details</h1>
+        <p class="welcome-subtext" style="text-align: left; margin-left: 0;">Review your billing details and calculate potential savings.</p>
+
+
+
+       <!-- Consumer Details Section -->
+<h2>Consumer Details:</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Consumer No</th>
+        <td>{{ output_json['Consumer Details']['Consumer No'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Consumer Name</th>
+        <td>{{ output_json['Consumer Details']['Consumer Name'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>{{ output_json['Consumer Details']['Address'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Village</th>
+        <td>{{ output_json['Consumer Details']['Village'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Pin Code</th>
+        <td>{{ output_json['Consumer Details']['Pin Code'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Contract Demand (KVA)</th>
+        <td>{{ output_json['Consumer Details']['Contract Demand (KVA)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>75% of Contract Demand (KVA)</th>
+        <td>{{ output_json['Consumer Details']['75% of Con. Demand (KVA)'] | default('N/A') }}</td>
+    </tr>
+</table>
+
+<!-- Billing Summary Section -->
+<h2>Billing Summary:</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Bill Amount</th>
+        <td>{{ output_json['Billing Summary']['Bill Amount'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Demand Charges</th>
+        <td>{{ output_json['Billing Summary']['Demand Charges'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Wheeling Charge</th>
+        <td>{{ output_json['Billing Summary']['Wheeling Charge'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Energy Charges</th>
+        <td>{{ output_json['Billing Summary']['Energy Charges'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>TOD Tariff EC</th>
+        <td>{{ output_json['Billing Summary']['TOD Tariff EC'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>FAC</th>
+        <td>{{ output_json['Billing Summary']['FAC'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Electricity Duty</th>
+        <td>{{ output_json['Billing Summary']['Electricity Duty'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Bulk Consumption Rebate</th>
+        <td>{{ output_json['Billing Summary']['Bulk Consumption Rebate'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Tax on Sale</th>
+        <td>{{ output_json['Billing Summary']['Tax on Sale'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Incremental Consumption Rebate</th>
+        <td>{{ output_json['Billing Summary']['Incremental Consumption Rebate'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Charges For Excess Demand</th>
+        <td class="{% if output_json['Billing Summary']['Charges For Excess Demand'] != 'N/A' and output_json['Billing Summary']['Charges For Excess Demand'] not in [0, '0', '0.00'] %}highlight-red{% endif %}">
+            {{ output_json['Billing Summary']['Charges For Excess Demand'] | default('N/A') }}
+        </td>
+    </tr>
+    <tr>
+        <th>Tax Collection at Source</th>
+        <td>{{ output_json['Billing Summary']['Tax Collection at Source'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Debit Bill Adjustment</th>
+        <td>{{ output_json['Billing Summary']['Debit Bill Adjustment'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Current Interest</th>
+        <td>{{ output_json['Billing Summary']['Current Interest'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Principal Arrears</th>
+        <td>{{ output_json['Billing Summary']['Principal Arrears'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Interest Arrears</th>
+        <td>{{ output_json['Billing Summary']['Interest Arrears'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Total Bill Amount (Rounded)</th>
+        <td>{{ output_json['Billing Summary']['Total Bill Amount (Rounded)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Delay Payment Charges</th>
+        <td>{{ output_json['Billing Summary']['Delay Payment Charges'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Billed Demand KVA</th>
+        <td>{{ output_json['Billing Summary']['Billed Demand KVA'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>@Rs</th>
+        <td>{{ output_json['Billing Summary']['@Rs'] | default('N/A') }}</td>
+    </tr>
+</table>
+
+<!-- Current Consumption Details Section -->
+<h2>Current Consumption Details:</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>KWH</th>
+        <td>{{ output_json['Current Consumption Details']['KWH'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>KVAH</th>
+        <td>{{ output_json['Current Consumption Details']['KVAH'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>RKVA (LAG)</th>
+        <td>{{ output_json['Current Consumption Details']['RKVA (LAG)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>RKVA (LEAD)</th>
+        <td>{{ output_json['Current Consumption Details']['RKVA (LEAD)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>KW (MD)</th>
+        <td>{{ output_json['Current Consumption Details']['KW (MD)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>KVA (MD)</th>
+        <td>{{ output_json['Current Consumption Details']['KVA (MD)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Billed Demand (KVA)</th>
+        <td>{{ output_json['Current Consumption Details']['Billed Demand (KVA)'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Assessed P.F.</th>
+        <td>{{ output_json['Current Consumption Details']['Assessed P.F.'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Billed P.F.</th>
+        <td>{{ output_json['Current Consumption Details']['Billed P.F.'] | default('N/A') }}</td>
+    </tr>
+    <tr>
+        <th>Rate</th>
+        <td>{{ output_json['Current Consumption Details']['Rate'] | default('N/A') }}</td>
+    </tr>
+</table>
+
+
+    </div>
+
+    <div class="cost-saving">
+        <h3 style="font-weight: bold; color: black;font-size: 20px">Cost of Saving</h3>
+
+        <form action="/calculate_saving" method="POST" id="cost-saving-form">
+            <button type="submit">Calculate Cost Saving</button>
+        </form>
+
+        <!-- Hidden result div, which will show only after form is submitted -->
+        {% if cost_saving is not none %}
+        <div id="cost-saving-result">
+            <h3 class="green-text" style="font-style: italic; font-size: 22px;">
+                Cost Saving: ₹{{ cost_saving }} Rs. at Rate of ₹{{ rate }} Rs.
+            </h3>
+        </div>
+        {% endif %}
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Dashboard</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header styling with pink shadow */
+        .header {
+            width: 100%;
+            background-color: #58c3e0;
+            color: #000;
+            padding: 15px;
+            box-shadow: 0px 4px 8px rgba(255, 0, 150, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header img {
+            height: 40px;
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            color: #000;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Centered content directly below the header */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding-top: 160px; /* Adjusted padding to place content closer to the top */
+        }
+
+        /* Styling for welcome message */
+        .welcome-message {
+            font-size: 36px;
+            color: #555555;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .welcome-subtext {
+            font-size: 28px;
+            color: #555555;
+            margin-bottom: 30px; /* Increased space below the welcome text */
+	    font-weight: bold;
+        }
+
+        /* Button styling with header color and black text */
+        .button {
+            display: inline-block;
+            width: 200px;
+            padding: 15px;
+            margin: 30px; /* Added space around the buttons */
+            font-size: 16px;
+            color: #000; /* Set button text color to black */
+            background-color: #58c3e0; /* Same color as header */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #47a8c4; /* Slightly darker shade for hover effect */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with logo and links -->
+    <div class="header">
+        <img src="logo.png" alt="Company Logo">
+    </div>
+
+    <!-- Centered content for welcome message directly below header -->
+    <div class="content">
+        <div class="welcome-message">Welcome To</div>
+        <div class="welcome-subtext">Digineous Technologies Private Limited</div>
+
+        <!-- Buttons container -->
+        <div class="container">
+            <a href="#" class="button" id="kycButton">KYC Capture</a>
+            <a href="#" class="button" id="invoiceButton">Invoice Matching</a>
+            <a href="#" class="button" id="electricityButton">Electricity Bill Insights</a>
+        </div>
+    </div>
+
+    <script>
+        // Set the href for each button
+        document.getElementById("kycButton").href = "your-link-for-kyc";
+        document.getElementById("invoiceButton").href = "your-link-for-invoice";
+        document.getElementById("electricityButton").href = "your-link-for-electricity";
+    </script>
+
+</body>
+</html>
